@@ -1,4 +1,4 @@
-import Thumb from "../assets/thumb.png";
+import Thumb from "../../assets/thumb.png";
 
 export default function RightColumn() {
   return (

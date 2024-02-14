@@ -1,11 +1,11 @@
-import ThumbLg from "../assets/thumb_lg.png";
-import Thumb from "../assets/thumb.png";
+import ThumbLg from "../../assets/thumb_lg.png";
+import Thumb from "../../assets/thumb.png";
 import { useContext } from "react";
-import { NewsContext } from "../context";
+import { NewsContext } from "../../context";
 import NewsCard from "./NewsCard";
 
 export default function LeftColumn() {
-  const { newsData, error, loading } = useContext(NewsContext);
+  const { newsData } = useContext(NewsContext);
 
   return (
     <>
