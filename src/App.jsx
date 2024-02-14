@@ -1,23 +1,23 @@
-import Footer from "./components/Footer";
-import Navbar from "./components/Navbar";
-import Page from "./page/Page";
-import { NewsProvider, CategoryProvider, SearchProvider } from "./provider";
-import "./App.css";
+import './App.css'
+import Footer from './components/Footer'
+import Navbar from './components/Navbar'
+import Page from './page/Page'
+import { CategoryProvider, NewsProvider, SearchProvider } from './provider'
 
 function App() {
   return (
     <>
-      <NewsProvider>
+      <SearchProvider>
         <CategoryProvider>
-          <SearchProvider>
+          <NewsProvider>
             <Navbar />
             <Page />
             <Footer />
-          </SearchProvider>
+          </NewsProvider>
         </CategoryProvider>
-      </NewsProvider>
+      </SearchProvider>
     </>
-  );
+  )
 }
 
-export default App;
+export default App

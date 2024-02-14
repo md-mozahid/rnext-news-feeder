@@ -1,52 +1,61 @@
-import { useState, useEffect } from "react";
+import { useContext, useEffect, useState } from 'react'
+import { CategoryContext } from '../context'
 
 export default function useNewsQuery() {
-  const [newsData, setNewsData] = useState({articles: null});
-  // console.log(newsData);
-  const [loading, setLoading] = useState({ state: false, message: "" });
-  const [error, setError] = useState(null);
-  const [category, setCategory] = useState(null);
+  const [newsData, setNewsData] = useState({})
+  const [loading, setLoading] = useState({ state: false, message: '' })
+  const [error, setError] = useState(null)
+  const { category, setCategory } = useContext(CategoryContext)
 
   // fetch data from api
-  const fetchNewsData = async () => {
+  const fetchNewsData = async (categoryName = null) => {
     try {
-      setLoading({ ...loading, state: true, message: "Fetching news data..." });
+      setLoading({
+        ...loading,
+        state: true,
+        message: 'Fetching news data...',
+      })
 
-      const response = await fetch(
-        `http://localhost:8000/v2/top-headlines?category=sports`
-      );
+      let response
+
+      if (categoryName) {
+        response = await fetch(
+          `http://localhost:8000/v2/top-headlines?category=${categoryName}`
+        )
+      } else {
+        response = await fetch(`http://localhost:8000/v2/top-headlines`)
+      }
 
       if (!response.ok) {
-        const errorMsg = `Fetching news data failed: ${response.status}`;
-        throw new Error(errorMsg);
+        const errorMsg = `Fetching news data failed: ${response.status}`
+        throw new Error(errorMsg)
       }
-      const data = await response.json();
+      const data = await response.json()
 
-      const updatedData = {
-        ...newsData,
-        articles: data,
-      };
-
-      setNewsData(updatedData);
+      setNewsData({ ...data })
     } catch (err) {
-      setError(err);
+      setError(err)
     } finally {
       setLoading({
         ...loading,
         state: false,
-        message: "",
-      });
+        message: '',
+      })
     }
-  };
+  }
 
   useEffect(() => {
     setLoading({
       ...loading,
       state: true,
-      message: "Fetching data...",
-    });
-    fetchNewsData();
-  }, []);
+      message: 'Fetching data...',
+    })
+    if (category) {
+      fetchNewsData(category)
+    } else if (category === 'all') {
+      fetchNewsData()
+    }
+  }, [category])
 
-  return { error, loading, newsData };
+  return { error, loading, newsData }
 }
