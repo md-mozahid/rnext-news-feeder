@@ -1,11 +1,11 @@
-import { useEffect } from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-export default function useNewsContents() {
-  const [newsData, setNewsData] = useState({ articles: null, search: "" });
-  console.log(newsData);
+export default function useNewsQuery() {
+  const [newsData, setNewsData] = useState({articles: null});
+  // console.log(newsData);
   const [loading, setLoading] = useState({ state: false, message: "" });
   const [error, setError] = useState(null);
+  const [category, setCategory] = useState(null);
 
   // fetch data from api
   const fetchNewsData = async () => {
@@ -13,7 +13,7 @@ export default function useNewsContents() {
       setLoading({ ...loading, state: true, message: "Fetching news data..." });
 
       const response = await fetch(
-        "http://localhost:8000/v2/top-headlines?category=general"
+        `http://localhost:8000/v2/top-headlines?category=sports`
       );
 
       if (!response.ok) {
@@ -38,6 +38,7 @@ export default function useNewsContents() {
       });
     }
   };
+
   useEffect(() => {
     setLoading({
       ...loading,

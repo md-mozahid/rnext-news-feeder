@@ -1,8 +1,8 @@
-import { NewsContext } from "../context/NewsContext";
-import { useNewsContents } from "../hooks";
+import { NewsContext } from "../context";
+import { useNewsQuery } from "../hooks";
 
 const NewsProvider = ({ children }) => {
-  const { newsData, error, loading } = useNewsContents();
+  const { newsData, error, loading } = useNewsQuery();
   return (
     <NewsContext.Provider value={{ newsData, error, loading }}>
       {children}

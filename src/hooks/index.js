@@ -1,3 +1,3 @@
-import useNewsContents from "./useNewsContents";
+import useNewsQuery from "./useNewsQuery";
 
-export { useNewsContents };
+export { useNewsQuery };
