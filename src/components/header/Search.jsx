@@ -9,7 +9,7 @@ export default function Search() {
         <div className="relative">
           <input
             type="text"
-            className="border border-slate-700 outline-none rounded-full px-4 py-1 pl-9"
+            className="border border-slate-700 outline-none rounded-full px-4 py-1 pl-9 focus:border-green-500"
             placeholder="Search..."
             onChange={(e) => setSearch(e.target.value)}
           />

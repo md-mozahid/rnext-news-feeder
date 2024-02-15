@@ -1,8 +1,10 @@
 import Categories from "./Categories";
 import Logo from "../../assets/logo.png";
 import Search from "./Search";
+import { useCategory } from "../../context";
 
 export default function Navbar() {
+  const { setCategory } = useCategory();
   return (
     <>
       <nav className="border-b border-black py-6 md:py-8">
@@ -61,7 +63,13 @@ export default function Navbar() {
             <span>Thursday, February 25, 2021</span>
           </div>
 
-          <a href="/">
+          <a
+            href="/"
+            onClick={(e) => {
+              e.preventDefault();
+              setCategory("all");
+            }}
+          >
             <img
               className="max-w-[100px] md:max-w-[165px]"
               src={Logo}
