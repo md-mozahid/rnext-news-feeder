@@ -13,7 +13,7 @@ export default function NewsWrapper() {
         {articles?.length > 0 ? (
           <div className="container mx-auto grid grid-cols-12 gap-8">
             {articles?.map((article) => (
-              <Fragment key={article.title}>
+              <Fragment key={article?.title}>
                 {article?.urlToImage ? (
                   <NewsCardWithThumb article={article} />
                 ) : (
@@ -27,5 +27,5 @@ export default function NewsWrapper() {
         )}
       </main>
     </>
-  )
+  );
 }
