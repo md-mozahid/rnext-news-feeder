@@ -7,7 +7,8 @@ export default function Search() {
 
   const searching = useDebounce((value) => {
     setSearch(value)
-  })
+  }, 500)
+  
   return (
     <>
       <div className="flex items-center space-x-3 lg:space-x-8">
